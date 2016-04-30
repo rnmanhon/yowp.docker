@@ -1,0 +1,26 @@
+mariadb:
+  container_name: mariadb
+  image: mariadb
+  ports:
+    - 3307:3306
+  environment:
+    - MYSQL_ROOT_PASSWORD="hello123"
+  volumes:
+    - ${YOWP_HOME}/config/mariadb.config:/etc/mysql
+    - ${YOWP_HOME}/data/mariadb:/var/lib/mysql
+
+wordpress:
+  container_name: wordpress
+  image: wordpress
+  ports:
+    - 8080:80
+  environment:
+    - WORDPRESS_DB_PASSWORD=hello123
+    - WORDPRESS_DB_USER=wordpress
+    - WORDPRESS_DB_NAME=wordpress
+  volumes:
+    - ${YOWP_HOME}/config/mariadb.config:/etc/mysql
+    - ${YOWP_HOME}/data/mariadb:/var/lib/mysql
+  links:
+    - mariadb:mysql
+
