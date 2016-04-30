@@ -19,8 +19,7 @@ wordpress:
     - WORDPRESS_DB_USER=wordpress
     - WORDPRESS_DB_NAME=wordpress
   volumes:
-    - ${YOWP_HOME}/config/mariadb.config:/etc/mysql
-    - ${YOWP_HOME}/data/mariadb:/var/lib/mysql
+    - ${YOWP_HOME}/config/wordpress/html:/var/www/html
   links:
     - mariadb:mysql
 
